@@ -18,11 +18,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from .views import index
-from authentication.views import user_index
+from .views import dashboard_view
+from authentication.views import registration_view, logout_view, login_view
+
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", index, name="index"),
-    path("users/", user_index, name="users-index")
+    path("", login_view, name="login-page"),
+    path("logout/", logout_view, name="logout-page"),
+    path('registration/', registration_view, name="registration-page"),
+    path("dashboard/<user_id>/", dashboard_view, name="dashboard-page"),
 ]
